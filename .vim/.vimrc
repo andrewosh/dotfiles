@@ -39,9 +39,6 @@ set showmatch
 set hlsearch
 nnoremap <leader><space> :noh<cr>
 
-nnoremap <tab> %
-vnoremap <tab> %
-
 set textwidth=100
 set colorcolumn=100
 
@@ -73,10 +70,10 @@ function! WinMove(key)
   endif
 endfunction
  
-map <leader>h              :call WinMove('h')<cr>
-map <leader>k              :call WinMove('k')<cr>
-map <leader>l              :call WinMove('l')<cr>
-map <leader>j              :call WinMove('j')<cr>
+map <tab>h              :call WinMove('h')<cr>
+map <tab>k              :call WinMove('k')<cr>
+map <tab>l              :call WinMove('l')<cr>
+map <tab>j              :call WinMove('j')<cr>
 
 nmap <left>  :3wincmd <<cr>
 nmap <right> :3wincmd ><cr>
@@ -85,4 +82,6 @@ nmap <down>  :3wincmd -<cr>
 
 " NerdTREE additions
  map <leader>n :NERDTreeToggle<CR>
+ autocmd StdinReadPre * let s:std_in=1
+ autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 
