@@ -83,10 +83,10 @@ nmap <down>  :3wincmd -<cr>
 " Tmux integration
 let g:tmux_navigator_no_mappings = 1
 
-nnoremap <C-h> :TmuxNavigateLeft<cr>
-nnoremap <C-j> :TmuxNavigateDown<cr>
-nnoremap <C-k> :TmuxNavigateUp<cr>
-nnoremap <C-l> :TmuxNavigateRight<cr>
+nnoremap <silent> <C-h> :TmuxNavigateLeft<cr>
+nnoremap <silent> <C-j> :TmuxNavigateDown<cr>
+nnoremap <silent> <C-k> :TmuxNavigateUp<cr>
+nnoremap <silent> <C-l> :TmuxNavigateRight<cr>
 
 " NerdTREE additions
 map <leader>n :NERDTreeToggle<CR>
