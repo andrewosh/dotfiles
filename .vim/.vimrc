@@ -1,6 +1,5 @@
 call pathogen#infect()
 syntax on
-filetype plugin indent on
 
 set nocompatible
 
@@ -10,6 +9,8 @@ set tabstop=4
 set shiftwidth=4
 set softtabstop=4
 set expandtab
+
+filetype plugin indent on
 
 set encoding=utf-8
 set scrolloff=3
@@ -24,6 +25,9 @@ set ttyfast
 set ruler
 set backspace=indent,eol,start
 set laststatus=2
+
+nnoremap <tab> %
+vnoremap <tab> %
 
 set relativenumber
 set undofile
@@ -92,4 +96,7 @@ nnoremap <silent> <C-l> :TmuxNavigateRight<cr>
 map <leader>n :NERDTreeToggle<CR>
 autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+
+" Syntastic additions
+let g:syntastic_javascript_checkers = ['standard']
 
