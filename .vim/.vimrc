@@ -12,6 +12,7 @@ set expandtab
 
 filetype plugin indent on
 
+set autoread
 set encoding=utf-8
 set scrolloff=3
 set autoindent
