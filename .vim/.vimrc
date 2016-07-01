@@ -5,9 +5,9 @@ set nocompatible
 
 set modelines=0
 
-set tabstop=4
-set shiftwidth=4
-set softtabstop=4
+set tabstop=2
+set shiftwidth=2
+set softtabstop=2
 set expandtab
 
 filetype plugin indent on
@@ -100,4 +100,3 @@ autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 
 " Syntastic additions
 let g:syntastic_javascript_checkers = ['standard']
-
