@@ -15,6 +15,10 @@ set showmatch
 set hlsearch
 nnoremap <leader><space> :noh<cr>
 
+set expandtab
+set tabstop=4
+set shiftwidth=4
+
 " Better window management
 function! WinMove(key) 
   let t:curwin = winnr()
@@ -52,17 +56,28 @@ Plug 'kien/rainbow_parentheses.vim'
 Plug 'mileszs/ack.vim'
 Plug 'xolox/vim-misc'
 Plug 'xolox/vim-easytags'
-Plug 'tpope/vim-sensible'
 Plug 'SirVer/ultisnips'
+Plug 'easymotion/vim-easymotion'
+Plug 'scrooloose/nerdcommenter'
 
-Plug 'vim-syntastic/syntastic'
-" Syntastic additions
-let g:syntastic_javascript_checkers = ['standard']
+Plug 'neomake/neomake'
+autocmd! BufWritePost * Neomake
+:highlight NeomakeErrorMsg ctermfg=227 ctermbg=237
+let g:neomake_warning_sign={'text': '⚠', 'texthl': 'NeomakeErrorMsg'}
+let g:neomake_javascript_enabled_makers = ['standard']
 
 " Javascript
 Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
-Plug 'ternjs/tern_for_vim', { 'for': ['javascript', 'javascript.jsx'] }
-Plug 'moll/vim-node', {'for': 'javascript' }
+Plug 'ternjs/tern_for_vim', { 'for': ['javascript', 'javascript.jsx'],  'do': 'npm install' }
+Plug 'jelera/vim-javascript-syntax', {'for': 'javascript' }
+Plug 'moll/vim-node', { 'for': 'javascript' }
+Plug 'helino/vim-json'
+autocmd FileType javascript set tabstop=2
+autocmd FileType javascript set shiftwidth=2
+autocmd FileType javascript retab
+autocmd FileType json set tabstop=2
+autocmd FileType json set shiftwidth=2
+autocmd FileType json retab
 
 " HTML
 Plug 'othree/html5-syntax.vim', { 'for': 'html' }
@@ -71,8 +86,13 @@ Plug 'othree/html5.vim', { 'for': 'html' }
 " Clojure
 Plug 'tpope/vim-fireplace', { 'for': 'clojure' }
 
-Plug 'Valloric/YouCompleteMe', { 'do': 'PATH=/usr/bin:$PATH ./install.py' }
+Plug 'Valloric/YouCompleteMe', { 'do': 'PATH=/usr/bin:$PATH ./install.py --all' }
 let g:ycm_path_to_python_interpreter = '/usr/bin/python'
+let g:ycm_autoclose_preview_window_after_insertion = 1
+
+" Color
+Plug 'flazz/vim-colorschemes'
+Plug 'chriskempson/base16-vim'
 
 " Tmux integration
 Plug 'christoomey/vim-tmux-navigator'
@@ -83,4 +103,10 @@ nnoremap <silent> <C-j> :TmuxNavigateDown<cr>
 nnoremap <silent> <C-k> :TmuxNavigateUp<cr>
 nnoremap <silent> <C-l> :TmuxNavigateRight<cr>
 
+" Tagbar
+Plug 'majutsushi/tagbar'
+nmap <Leader>tl :TagbarToggle<CR>
+
 call plug#end()
+let base16colorspace=256  " Access colors present in 256 colorspace
+colorscheme materialtheme
