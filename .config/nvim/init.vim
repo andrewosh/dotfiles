@@ -6,8 +6,11 @@ nnoremap <tab> %
 vnoremap <tab> %
 let mapleader = ","
 
+set number
+set relativenumber
+
 set ignorecase
-set smartcase
+set smartcase 
 set gdefault
 
 set incsearch
@@ -18,6 +21,8 @@ nnoremap <leader><space> :noh<cr>
 set expandtab
 set tabstop=4
 set shiftwidth=4
+
+nnoremap <silent> <leader>rc :e ~/.vimrc<CR>
 
 " Better window management
 function! WinMove(key) 
@@ -43,15 +48,55 @@ nmap <right> :3wincmd ><cr>
 nmap <up>    :3wincmd +<cr>
 nmap <down>  :3wincmd -<cr>
 
+function OpenExploreTab() 
+  :tabedit
+  :Explore
+endfunction
+nmap <leader>t :call OpenExploreTab()<cr>
+
 
 """"" Plugin-specific settings
 
-Plug 'scrooloose/nerdtree'
-" NerdTREE additions
-map <leader>n :NERDTreeToggle<CR>
-autocmd StdinReadPre * let s:std_in=1
-autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+" netrw settings
+map <leader>n :Explore<cr>
+let g:netrw_banner = 0
+let g:netrw_liststyle = 3
+function StartExplorer()
+    :Explore
+endfunction
+autocmd VimEnter * if !argc() | :call StartExplorer() | endif
 
+" Text linking
+Plug 'vim-scripts/utl.vim'
+
+" Org-Mode
+Plug 'jceb/vim-orgmode'
+
+" Autocomplete
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+Plug 'ervandew/supertab'
+
+" Use deoplete with assorted autocompletion features + SuperTab
+let g:deoplete#enable_at_startup = 1
+let g:deoplete#omni#functions = {}
+let g:deoplete#omni#functions.javascript = [
+  \ 'tern#Complete'
+\]
+set completeopt=longest,menuone,preview
+let g:deoplete#sources = {}
+let g:deoplete#sources['javascript.jsx'] = ['file', 'ultisnips', 'ternjs']
+let g:tern#command = ['tern']
+let g:tern#arguments = ['--persistent']
+
+autocmd FileType javascript let g:SuperTabDefaultCompletionType = "<c-x><c-o>"
+let g:UltiSnipsExpandTrigger="<C-a>"
+inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+
+" Snippets
+Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
+
+" General goodness
 Plug 'kien/rainbow_parentheses.vim'
 Plug 'mileszs/ack.vim'
 Plug 'xolox/vim-misc'
@@ -59,36 +104,49 @@ Plug 'xolox/vim-easytags'
 Plug 'SirVer/ultisnips'
 Plug 'easymotion/vim-easymotion'
 Plug 'scrooloose/nerdcommenter'
+Plug 'vim-scripts/L9'
 
-Plug 'neomake/neomake'
-autocmd! BufWritePost * Neomake
-:highlight NeomakeErrorMsg ctermfg=227 ctermbg=237
-let g:neomake_warning_sign={'text': '⚠', 'texthl': 'NeomakeErrorMsg'}
-let g:neomake_javascript_enabled_makers = ['standard']
+Plug 'ctrlpvim/ctrlp.vim'
+let g:ctrlp_map = '<c-p>'
+nmap <leader>s :split<CR><c-w>j<c-p>
+nmap <leader>v :vsplit<CR><c-w>l<c-p>
+nmap <leader>b :CtrlPBuffer
+nmap <leader>o :CtrlP
+
+Plug 'w0rp/ale'
 
 " Javascript
-Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
+Plug 'pangloss/vim-javascript', { 'for': ['javascript', 'javascript.jsx'] }
 Plug 'ternjs/tern_for_vim', { 'for': ['javascript', 'javascript.jsx'],  'do': 'npm install' }
-Plug 'jelera/vim-javascript-syntax', {'for': 'javascript' }
-Plug 'moll/vim-node', { 'for': 'javascript' }
-Plug 'helino/vim-json'
+Plug 'carlitux/deoplete-ternjs', { 'for': ['javascript', 'javascript.jsx'] }
+Plug 'jelera/vim-javascript-syntax', {'for': ['javascript', 'javascript.jsx']  }
+Plug 'moll/vim-node', { 'for': ['javascript', 'javascript.jsx'] }
+Plug 'isRuslan/vim-es6'
+Plug 'andrewosh/vim-react-snippets'
 autocmd FileType javascript set tabstop=2
 autocmd FileType javascript set shiftwidth=2
 autocmd FileType javascript retab
 autocmd FileType json set tabstop=2
 autocmd FileType json set shiftwidth=2
 autocmd FileType json retab
+let g:javascript_plugin_flow = 1
+
+" Typescript
+Plug 'leafgarland/typescript-vim', { 'for': 'typescript' }
+
+" JSX
+Plug 'mxw/vim-jsx', { 'for': 'javascript' }
+let g:jsx_ext_required = 0
+
+" Protobuf
+Plug 'uarun/vim-protobuf'
 
 " HTML
 Plug 'othree/html5-syntax.vim', { 'for': 'html' }
 Plug 'othree/html5.vim', { 'for': 'html' }
 
-" Clojure
-Plug 'tpope/vim-fireplace', { 'for': 'clojure' }
-
-Plug 'Valloric/YouCompleteMe', { 'do': 'PATH=/usr/bin:$PATH ./install.py --all' }
-let g:ycm_path_to_python_interpreter = '/usr/bin/python'
-let g:ycm_autoclose_preview_window_after_insertion = 1
+" YAML
+autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
 
 " Color
 Plug 'flazz/vim-colorschemes'

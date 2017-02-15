@@ -88,7 +88,13 @@ source ~/google-cloud-sdk/path.zsh.inc
 source ~/google-cloud-sdk/completion.zsh.inc
 export CLOUDSDK_PYTHON=/usr/bin/python2.7
 
-alias vim=nvim
+source ~/.bash_aliases
 
 export TERM="xterm-256color"
 
+# Android stuff
+export PATH=~/Android/Sdk/platform-tools/:$PATH
+export ANDROID_HOME=~/Android/Sdk
+
+setopt noautomenu
+setopt nomenucomplete
