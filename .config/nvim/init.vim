@@ -22,6 +22,8 @@ set expandtab
 set tabstop=4
 set shiftwidth=4
 
+:set colorcolumn=80
+
 nnoremap <silent> <leader>rc :e ~/.vimrc<CR>
 
 " Better window management
@@ -97,6 +99,7 @@ Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 
 " General goodness
+Plug 'tpope/vim-obsession'
 Plug 'kien/rainbow_parentheses.vim'
 Plug 'mileszs/ack.vim'
 Plug 'xolox/vim-misc'
@@ -110,8 +113,9 @@ Plug 'ctrlpvim/ctrlp.vim'
 let g:ctrlp_map = '<c-p>'
 nmap <leader>s :split<CR><c-w>j<c-p>
 nmap <leader>v :vsplit<CR><c-w>l<c-p>
-nmap <leader>b :CtrlPBuffer
-nmap <leader>o :CtrlP
+nmap <leader>b :CtrlPBuffer<cr>
+nmap <leader>o :CtrlP<cr>
+let g:ctrlp_working_path_mode = 'w'
 
 Plug 'w0rp/ale'
 
@@ -130,6 +134,9 @@ autocmd FileType json set tabstop=2
 autocmd FileType json set shiftwidth=2
 autocmd FileType json retab
 let g:javascript_plugin_flow = 1
+let g:ale_linters = {
+\   'javascript': ['eslint'],
+\}
 
 " Typescript
 Plug 'leafgarland/typescript-vim', { 'for': 'typescript' }
@@ -137,6 +144,11 @@ Plug 'leafgarland/typescript-vim', { 'for': 'typescript' }
 " JSX
 Plug 'mxw/vim-jsx', { 'for': 'javascript' }
 let g:jsx_ext_required = 0
+
+" Flow
+Plug 'flowtype/vim-flow'
+let g:flow#enable=1
+let g:flow#autoclose=1
 
 " Protobuf
 Plug 'uarun/vim-protobuf'

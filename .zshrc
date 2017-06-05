@@ -51,7 +51,8 @@ ZSH_THEME="pure"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(zsh-nvm git node npm pip python docker tmux vi-mode)
+export NVM_LAZY_LOAD=true
+plugins=(zsh-nvm git node npm pip python tmux vi-mode)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -91,10 +92,15 @@ export CLOUDSDK_PYTHON=/usr/bin/python2.7
 source ~/.bash_aliases
 
 export TERM="xterm-256color"
+export EDITOR="nvim"
 
 # Android stuff
 export PATH=~/Android/Sdk/platform-tools/:$PATH
 export ANDROID_HOME=~/Android/Sdk
+
+# golang stuff
+export PATH=$PATH:/usr/local/go/bin
+export GOPATH=~/go
 
 setopt noautomenu
 setopt nomenucomplete
