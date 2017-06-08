@@ -10,7 +10,7 @@ set number
 set relativenumber
 
 set ignorecase
-set smartcase 
+set smartcase
 set gdefault
 
 set incsearch
@@ -27,13 +27,13 @@ set shiftwidth=4
 nnoremap <silent> <leader>rc :e ~/.vimrc<CR>
 
 " Better window management
-function! WinMove(key) 
+function! WinMove(key)
   let t:curwin = winnr()
   exec "wincmd ".a:key
   if (t:curwin == winnr()) "we havent moved
     if (match(a:key,'[jk]')) "were we going up/down
       wincmd v
-    else 
+    else
       wincmd s
     endif
     exec "wincmd ".a:key
@@ -50,7 +50,7 @@ nmap <right> :3wincmd ><cr>
 nmap <up>    :3wincmd +<cr>
 nmap <down>  :3wincmd -<cr>
 
-function OpenExploreTab() 
+function OpenExploreTab()
   :tabedit
   :Explore
 endfunction
