@@ -2,6 +2,7 @@ call plug#begin('~/.vim/plugged')
 
 " CtrlP
 Plug 'ctrlpvim/ctrlp.vim'
+let g:ctrlp_switch_buffer = 'et'
 let g:ctrlp_map = '<c-p>'
 nmap <leader>s :split<CR><c-w>j<c-p>
 nmap <leader>v :vsplit<CR><c-w>l<c-p>
