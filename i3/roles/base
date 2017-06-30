@@ -6,8 +6,8 @@ set $mod Mod4
 
 ############ Look and Feel  ################################
 # Font for window titles. Will also be used by the bar unless a different font
-#font pango: Ubuntu Mono 10
-font pango:DejaVu Sans Mono 9
+font pango: Ubuntu Mono 10
+#font pango:DejaVu Sans Mono 9
 
 ### custom colors
 set $gold    #ffa000
@@ -92,7 +92,7 @@ bindsym $mod+Mod1+l workspace next
 
 ### change container layout (stacked, tabbed, toggle split)
 #bindsym $mod+s layout stacking
-#bindsym $mod+w layout tabbed
+bindsym $mod+w layout tabbed
 #bindsym $mod+e layout toggle split
 
 # toggle tiling / floating
@@ -107,8 +107,6 @@ bindsym $mod+a focus parent
 # jump to urgent window
 bindsym $mod+u [urgent=latest] focus
 
-# lock the screen
-bindsym $MOD+l exec "gnome-screensaver-command --lock"
 ############ Workspace Management  ################################
 
 # switch to workspace
@@ -137,9 +135,6 @@ bindsym $mod+Shift+0 move container to workspace number 10
 
 # save last workspace - can toggle with mod+tab or mod+num_cur_ws
 workspace_auto_back_and_forth yes
-
-# move current container to previous workspace and follow it
-bindsym $mod+k move container to workspace back_and_forth; workspace back_and_forth
 
 # moving workspaces across monitors
 bindsym $mod+Shift+greater move workspace to output right
@@ -228,7 +223,7 @@ set $terminal terminator
 
 # favorite programs
 bindsym $mod+z exec $browser
-bindsym $mod+b exec $filemanager
+bindsym $mod+c exec $filemanager
 bindsym $mod+Return exec $terminal
 
 # App Bindings
