@@ -1,6 +1,5 @@
 # Vania's i3 window manager config file.
 # Last updated: 3/7/2016
-
 # set mod to Win key
 set $mod Mod4
 
@@ -65,29 +64,31 @@ bindsym $mod+r mode "resize"
 ############ Core Commands  ################################
 
 # kill focused window
-bindsym $mod+q kill
+bindsym $mod+x kill
 
 # split in horizontal orientation
-bindsym $mod+h split h
+bindsym $mod+v split h
 
 # split in vertical orientation
-bindsym $mod+v split v
+bindsym $mod+s split v
 
 # enter fullscreen mode for the focused container
 bindsym $mod+f fullscreen
 
 ### change focus:
-bindsym $mod+Left focus left
-bindsym $mod+Down focus down
-bindsym $mod+Up focus up
-bindsym $mod+Right focus right
+bindsym $mod+h focus left
+bindsym $mod+j focus down
+bindsym $mod+k focus up
+bindsym $mod+l focus right
 bindsym $mod+Tab workspace back_and_forth
+bindsym $mod+Mod1+h workspace prev
+bindsym $mod+Mod1+l workspace next
 
 ### move focused window
-bindsym $mod+Shift+Left move left
-bindsym $mod+Shift+Down move down
-bindsym $mod+Shift+Up move up
-bindsym $mod+Shift+Right move right
+#bindsym $mod+Shift+h move left
+#bindsym $mod+Shift+j move down
+#bindsym $mod+Shift+k move up
+#bindsym $mod+Shift+l move right
 
 ### change container layout (stacked, tabbed, toggle split)
 bindsym $mod+s layout stacking
@@ -211,27 +212,13 @@ bindsym $mod+g exec "rofi -show window"
 bindsym $mod+d exec "rofi -show run"
 bindsym $mod+b exec "rofi -show Workspace"
 
-bindsym Ctrl+Shift+a exec i3-input -F 'rename workspace to %s' -P 'New name: '
+bindsym $mod+Mod1+c exec i3-input -F 'rename workspace to %s' -P 'New name: '
 
 ############ Display and Music  ################################
 
 # Screen brightness controls
 bindsym XF86MonBrightnessUp exec xbacklight -inc 20 # increase screen brightness
 bindsym XF86MonBrightnessDown exec xbacklight -dec 20 # decrease screen brightness
-
-
-# Media player controls
-bindsym XF86AudioRaiseVolume "exec amixer -q sset Master 5%+ unmute"
-bindsym XF86AudioLowerVolume "exec amixer -q sset Master 5%- unmute"
-bindsym $mod+XF86AudioRaiseVolume exec "amixer -q sset Master,0 1+ unmute"
-bindsym $mod+XF86AudioLowerVolume exec "amixer -q sset Master,0 1- unmute"
-
-# bindsym XF86AudioMute exec "amixer -q sset Master,0 toggle" # UNABLE TO UNMUTE
-bindsym XF86AudioPlay exec cmus-remote -u
-bindsym XF86AudioPause exec cmus-remote -u
-bindsym XF86AudioNext exec cmus-remote -n
-bindsym XF86AudioPrev exec cmus-remote -r
-
 
 ############ Apps  ################################
 
@@ -241,15 +228,15 @@ set $terminal terminator
 
 # favorite programs
 bindsym $mod+z exec $browser
-bindsym $mod+x exec $filemanager
-bindsym $mod+Return exec i3-sensible-terminal
+bindsym $mod+b exec $filemanager
+bindsym $mod+Return exec $terminal
 
 # App Bindings
-assign [instance="^crx_nckgahadagoaajjgafhacjanaoiihapd$"] hangouts
-assign [instance="^crx_knipolnnllmklapflnccelgolnpehhpl$"] hangouts
-assign [instance="^crx_clhhggbfdinjmjhajaheehoeibfljjno$"] telegram
+#assign [instance="^crx_nckgahadagoaajjgafhacjanaoiihapd$"] hangouts
+#assign [instance="^crx_knipolnnllmklapflnccelgolnpehhpl$"] hangouts
+#assign [instance="^crx_clhhggbfdinjmjhajaheehoeibfljjno$"] telegram
 
-for_window [instance="^crx_knipolnnllmklapflnccelgolnpehhpl$"] floating disable
+#for_window [instance="^crx_knipolnnllmklapflnccelgolnpehhpl$"] floating disable
 
 ###### startup applications #####
 
@@ -263,10 +250,6 @@ exec --no-startup-id feh --bg-fill ~/.dotfiles/pics/ubuntu_blue.jpg
 
 ## keybinds
 exec xbindkeys
-
-# music
-for_window [title="^cmus$"] move window to scratchpad
-exec --no-startup-id terminator -T cmus -e cmus
 
 ### user apps
 exec $browser

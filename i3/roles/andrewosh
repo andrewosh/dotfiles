@@ -1,26 +1,16 @@
 ### Pulled in from litmus ###
 set $left DP-4
-set $right DP-7
 
 workspace 1 output $left
 workspace 2 output $left
 workspace 3 output $left
 workspace 4 output $left
 workspace 5 output $left
-
-workspace 6 output $right 
-workspace 7 output $right 
-workspace 8 output $right 
-workspace 9 output $right 
-workspace 10 output $right
-
-workspace hangouts output $right
-workspace cider output $right
-workspace telegram output $right
-
-
-## displays
-exec xrandr --output $right --right-of $left
+workspace 6 output $left
+workspace 7 output $left
+workspace 8 output $left
+workspace 9 output $left
+workspace 10 output $left
 
 ## feh override
 exec --no-startup-id "feh --recursive --randomize --bg-fill ~/Pictures/4k-wallpaper"
