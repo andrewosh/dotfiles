@@ -52,7 +52,7 @@ ZSH_THEME="pure"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 export NVM_LAZY_LOAD=true
-plugins=(zsh-nvm git node npm pip python tmux vi-mode)
+plugins=(zsh-nvm git node npm pip python vi-mode)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -99,8 +99,13 @@ export PATH=~/Android/Sdk/platform-tools/:$PATH
 export ANDROID_HOME=~/Android/Sdk
 
 # golang stuff
-export PATH=$PATH:/usr/local/go/bin
+#
 export GOPATH=~/go
+export PATH=$PATH:/usr/local/go/bin:$GOPATH/bin
+
+setxkbmap -layout us -option ctrl:nocaps
+
+export NVIM_TUI_ENABLE_CURSOR_SHAPE=0
 
 setopt noautomenu
 setopt nomenucomplete

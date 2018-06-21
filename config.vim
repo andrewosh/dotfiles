@@ -19,6 +19,18 @@ set expandtab
 set tabstop=2
 set shiftwidth=2
 
+set wildmode=longest,list,full
+set wildmenu
+
+set backspace=indent,eol,start
+
+set guicursor=
+
+set autoread
+
+" Get rid of the swap file garbage
+set shortmess+=A
+
 nnoremap <silent> <leader>rc :e ~/.vimrc<CR>
 
 " Better window management
