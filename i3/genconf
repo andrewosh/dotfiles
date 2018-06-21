@@ -1,0 +1,16 @@
+#!/bin/zsh
+
+ROOT="$HOME/dotfiles/i3"
+NAME=$(echo $HOST | cut -f1 -d".")
+
+# remove the old config.
+mv $ROOT/config /tmp/i3-config.bak
+
+# generate new config
+cp $ROOT/roles/base $ROOT/config
+
+if [ -f $ROOT/generators/$NAME  ]; then
+    echo "Running $NAME config generator"
+    source $ROOT/generators/$NAME
+fi
+

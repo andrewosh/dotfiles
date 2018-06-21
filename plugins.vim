@@ -2,6 +2,7 @@ call plug#begin('~/.vim/plugged')
 
 " CtrlP
 Plug 'ctrlpvim/ctrlp.vim'
+let g:ctrlp_switch_buffer = 'et'
 let g:ctrlp_map = '<c-p>'
 nmap <leader>s :split<CR><c-w>j<c-p>
 nmap <leader>v :vsplit<CR><c-w>l<c-p>
@@ -156,6 +157,3 @@ Plug 'xolox/vim-misc'
 Plug 'easymotion/vim-easymotion'
 
 call plug#end()
-"let base16colorspace=256  " Access colors present in 256 colorspace
-"colorscheme materialtheme
-"
