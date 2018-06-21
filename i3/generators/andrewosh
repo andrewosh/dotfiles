@@ -1,5 +1,0 @@
-# dynamic litmus script
-roles=(andrewosh google)
-for role in $roles; do
-    cat ~/dotfiles/i3/roles/$role >> $ROOT/config
-done

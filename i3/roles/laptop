@@ -1,3 +1,0 @@
-### laptop config ###
-exec wicd
-exec --no-startup-id nm-applet
